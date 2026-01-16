@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicólogo Daniel Miranda</title>
+    <style>
+        :root {
+            --primary: #6d9dc5;
+            --secondary: #8ab5db;
+            --accent: #ff9a76;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --dark-text: #e2e8f0;
+            --dark-border: #334155;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--dark-bg);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--dark-card);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark-text);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a253a 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 20%, rgba(109, 157, 197, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #cbd5e1;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 154, 118, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-button:hover {
+            background-color: #ff8a5c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 154, 118, 0.4);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #94a3b8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: var(--dark-card);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--dark-border);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .benefit-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+        
+        .benefit-card p {
+            color: #94a3b8;
+        }
+        
+        /* About */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: #cbd5e1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid var(--dark-border);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--dark-card);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 1px solid var(--dark-border);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .service-content p {
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--dark-card);
+            border-top: 1px solid var(--dark-border);
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .testimonial {
+            background: var(--dark-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            border: 1px solid var(--dark-border);
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 25px;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            position: relative;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.5;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-role {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #475569;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .testimonial-dot.active {
+            background-color: var(--primary);
+        }
+        
+        .testimonial-arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        
+        .testimonial-arrow {
+            background-color: rgba(30, 41, 59, 0.7);
+            border: none;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            pointer-events: all;
+            backdrop-filter: blur(5px);
+        }
+        
+        .testimonial-arrow:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* FAQ */
+        .faq-item {
+            background: var(--dark-card);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            border: 1px solid var(--dark-border);
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark-text);
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+            color: #94a3b8;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        
+        /* Contact */
+        .contact {
+            background: linear-gradient(135deg, var(--dark-card) 0%, #25324d 100%);
+            color: white;
+            text-align: center;
+            border-top: 1px solid var(--dark-border);
+        }
+        
+        .contact .section-title h2,
+        .contact .section-title p {
+            color: white;
+        }
+        
+        .contact-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .contact-option {
+            background: rgba(30, 41, 59, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--dark-border);
+            transition: transform 0.3s;
+        }
+        
+        .contact-option:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-option h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .contact-option p {
+            color: #cbd5e1;
+        }
+        
+        .whatsapp-button {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-card);
+            color: white;
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--dark-border);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-column p, .footer-column li {
+            color: #94a3b8;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--dark-border);
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-card);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                border-top: 1px solid var(--dark-border);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .header-container {
+                padding: 10px 0;
+            }
+            
+            .testimonial-arrows {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Psicólogo<span> Daniel Miranda</span></div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#beneficios">Benefícios</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu" id="mobile-menu">☰</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Cuide da Sua Saúde Mental e Espiritual com Apoio Profissional</h1>
+            <p>Ofereço terapia online para ajudar você a superar desafios emocionais, desenvolver autoconhecimento e alcançar bem-estar. Sua jornada para uma vida mais plena começa aqui.</p>
+            <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma sessão de terapia" class="cta-button" target="_blank">Agendar Sessão via WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Benefícios da Terapia</h2>
+                <p>Descubra como a terapia pode transformar sua vida e relacionamentos</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Autoconhecimento</h3>
+                    <p>Compreenda melhor seus pensamentos, emoções e comportamentos para tomar decisões mais conscientes.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💪</div>
+                    <h3>Fortalecimento Emocional</h3>
+                    <p>Desenvolva resiliência emocional para lidar com os desafios da vida de forma mais equilibrada.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">✝️</div>
+                    <h3>Espiritualidade</h3>
+                    <p>Oferecimento de suporte integral e orientação espiritual direcionada ao fortalecimento da relação pessoal com Deus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Mim</h2>
+                <p>Conheça minha trajetória e abordagem terapêutica</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Sou graduando em psicologia pela universidade Veiga de Almeida e Cristão, com experiência no atendimento de adultos e adolescentes de forma online.</p>
+                    <p>Minha abordagem é centrada no cliente, oferecendo um espaço seguro, acolhedor e sem julgamentos para que você possa explorar suas questões e encontrar caminhos para o seu bem-estar.</p>
+                    <p>Acredito que cada pessoa tem recursos internos para superar desafios e a terapia funciona como um guia para acessar esses recursos.</p>
+                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre sua abordagem" class="cta-button" target="_blank" style="margin-top: 20px;">Conversar no WhatsApp</a>
+                </div>
+                <div class="about-image">
+                    <!-- Imagem do psicólogo - substitua pelo caminho real da imagem -->
+                    <div style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); height: 400px; display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 18px;">
+                        <img src="psicologo.png" alt="Foto do Psicólogo Daniel Miranda" style="width: 100%; height: auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Serviços Oferecidos</h2>
+                <p>Modalidades de atendimento para atender suas necessidades específicas</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="terapia.jpg" alt="Terapia Individual" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="service-content">
+                        <h3>Terapia Individual</h3>
+                        <p>Atendimento personalizado para trabalhar questões específicas como ansiedade, depressão, autoestima, relacionamentos e desenvolvimento pessoal e espiritual com Deus.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma sessão de terapia individual" class="whatsapp-button" target="_blank" style="margin-top: 10px; display: inline-block;">Agendar</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="couple.jpg" alt="Terapia de Casal" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="service-content">
+                        <h3>Terapia de Casal</h3>
+                        <p>Espaço para casais melhorarem a comunicação, resolverem conflitos e fortalecerem a conexão emocional no relacionamento.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma sessão de terapia de casal" class="whatsapp-button" target="_blank" style="margin-top: 28px; display: inline-block;">Agendar</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="profissao.jpeg" alt="Orientação Profissional" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="service-content">
+                        <h3>Orientação Profissional</h3>
+                        <p>Auxílio no processo de escolha profissional, transição de carreira e desenvolvimento de habilidades para o mercado de trabalho.</p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma sessão de orientação profissional" class="whatsapp-button" target="_blank" style="margin-top: 28px; display: inline-block;">Agendar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Depoimentos</h2>
+                <p>O que meus clientes dizem sobre a experiência terapêutica</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track" id="testimonial-track">
+                    <div class="testimonial">
+                        <p class="testimonial-text">A terapia mudou minha vida. Aprendi a lidar com minha ansiedade de forma muito mais saudável e hoje me sinto mais confiante e no controle das minhas emoções. O processo me ajudou a desenvolver ferramentas que uso no dia a dia.</p>
+                        <p class="testimonial-author">Maria S., 32 anos</p>
+                        <p class="testimonial-role">Gerente de Projetos</p>
+                    </div>
+                    <div class="testimonial">
+                        <p class="testimonial-text">Estava passando por um momento difícil no casamento e a terapia de casal nos ajudou a nos reconectar. Aprendemos a nos comunicar de forma mais eficaz e hoje temos uma relação muito mais saudável e satisfatória.</p>
+                        <p class="testimonial-author">Carlos e Ana, 38 e 35 anos</p>
+                        <p class="testimonial-role">Casal em terapia</p>
+                    </div>
+                    <div class="testimonial">
+                        <p class="testimonial-text">A orientação profissional foi fundamental para minha transição de carreira. Com o autoconhecimento desenvolvido nas sessões, consegui identificar meus verdadeiros interesses e hoje trabalho com o que realmente amo.</p>
+                        <p class="testimonial-author">Roberto L., 29 anos</p>
+                        <p class="testimonial-role">Designer</p>
+                    </div>
+                </div>
+                <div class="testimonial-nav" id="testimonial-nav">
+                    <div class="testimonial-dot active" data-index="0"></div>
+                    <div class="testimonial-dot" data-index="1"></div>
+                    <div class="testimonial-dot" data-index="2"></div>
+                </div>
+                <div class="testimonial-arrows">
+                    <button class="testimonial-arrow" id="prev-testimonial">‹</button>
+                    <button class="testimonial-arrow" id="next-testimonial">›</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Perguntas Frequentes</h2>
+                <p>Tire suas dúvidas sobre o processo terapêutico</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como funciona a terapia online?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A terapia online acontece por videochamada Meet em um ambiente seguro e confidencial. Você receberá um link para acessar a sessão no horário agendado. A experiência é muito similar à terapia presencial, com a comodidade de fazer de qualquer lugar.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quanto tempo dura o atendimento?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O atendimento dura por 50 minutos mas pode se estender até 1 hora.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quantas sessões são necessárias?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O número de sessões varia de acordo com cada pessoa e suas necessidades específicas. Algumas pessoas sentem melhoras significativas em poucas sessões, enquanto outras preferem um acompanhamento mais prolongado. Discutiremos isso durante nossa primeira sessão.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quais são as formas de pagamento?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aceitamos PIX, cartão de crédito e transferência bancária. O pagamento é realizado antes de cada sessão para garantir o agendamento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+                <p>Estou aqui para ajudar você a dar o primeiro passo em direção ao seu bem-estar</p>
+            </div>
+            <div class="contact-options">
+                <div class="contact-option">
+                    <h3>Agende Sua Sessão</h3>
+                    <p>Clique abaixo para conversar diretamente comigo no WhatsApp e agendar sua primeira sessão.</p>
+                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma sessão de terapia" class="whatsapp-button" target="_blank">Agendar no WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Psicólogo Daniel Miranda</h3>
+                    <p>Psicólogo especializado em oferecer atendimento humanizado e eficaz para seu bem-estar emocional.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><a href="https://wa.me/5511999999999" target="_blank">WhatsApp: (21) 95902-2505</a></li>
+                        <li>Email: danielmiranda7755@gmail.com</li>
+                        <li>Atendimento Online</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Psicólogo Daniel Miranda - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                item.classList.toggle('active');
+                
+                // Change icon
+                const icon = question.querySelector('span:last-child');
+                icon.textContent = item.classList.contains('active') ? '−' : '+';
+            });
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', () => {
+            document.getElementById('nav-menu').classList.toggle('show');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(window.innerWidth <= 768) {
+                        document.getElementById('nav-menu').classList.remove('show');
+                    }
+                }
+            });
+        });
+        
+        // WhatsApp Number
+        const whatsappNumber = "5521959022505";
+        
+        // Update all WhatsApp links with the actual number
+        document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+            link.href = link.href.replace(/5511999999999/g, whatsappNumber);
+        });
+
+        // Add subtle animations to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.benefit-card, .service-card, .contact-option').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(el);
+        });
+
+        // Testimonial Carousel
+        const track = document.getElementById('testimonial-track');
+        const dots = document.querySelectorAll('.testimonial-dot');
+        const prevButton = document.getElementById('prev-testimonial');
+        const nextButton = document.getElementById('next-testimonial');
+        let currentIndex = 0;
+        const totalTestimonials = document.querySelectorAll('.testimonial').length;
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // Next testimonial
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalTestimonials;
+            updateCarousel();
+        });
+
+        // Previous testimonial
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalTestimonials) % totalTestimonials;
+            updateCarousel();
+        });
+
+        // Dot navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                currentIndex = parseInt(dot.getAttribute('data-index'));
+                updateCarousel();
+            });
+        });
+
+        // Auto-advance carousel (optional)
+        let autoAdvance = setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalTestimonials;
+            updateCarousel();
+        }, 6000);
+
+        // Pause auto-advance on hover
+        const slider = document.querySelector('.testimonial-slider');
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(autoAdvance);
+        });
+        
+        slider.addEventListener('mouseleave', () => {
+            autoAdvance = setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalTestimonials;
+                updateCarousel();
+            }, 6000);
+        });
+    </script>
+</body>
+</html>
